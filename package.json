@@ -1,0 +1,30 @@
+{
+  "name": "bulletcabinet-update-tools",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "build": {
+    "productName": "bulletcabinet-update-tools",
+    "extraFiles": [
+      "tools/"
+    ]
+  },
+  "author": "fupanli <lifupan@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "deasync-promise": "^1.0.1",
+    "directory-exists": "",
+    "electron-debug": "",
+    "file-exists": "",
+    "flexboxgrid": "6.3.0",
+    "lodash": "",
+    "progressbar.js": "",
+    "rd": ""
+  },
+  "devDependencies": {
+    "electron": "^1.8.3"
+  },
+  "description": ""
+}

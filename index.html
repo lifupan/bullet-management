@@ -1,0 +1,114 @@
+﻿<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>子弹柜系统烧写程序</title>
+  <link rel="stylesheet" type="text/css" href="css/flexboxgrid.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/desktop.css">
+  <link rel="stylesheet" type="text/css" href="css/angular.css">
+  <script src="./app.js"></script>
+</head>
+<body>
+
+    <header class="section-header" ng-controller="HeaderController as header">
+   
+    </header>
+
+    <main class="wrapper" ui-view>
+    	<div id="MainFlashDiv" style="display:none">
+    		 <div id="FlashDivTitle" class="page-main text-left lead">请连接计算机与控制主板...</div>
+    	   <div id="container" class="page-main row around-xs"></div> 
+    	</div>
+    	
+    	<div class="page-main row around-xs" id="MainSelectDiv">
+  			<div class="col-xs" ng-controller="ImageSelectionController as image">
+    			<div class="box text-center relative" os-dropzone="image.selectImageByPath($file)">
+
+      			<div class="center-block">
+        			<img class="svg-icon" src="assets/image.svg"></img>
+     			  </div>
+
+      			<div class="space-vertical-large">
+        				<div id="mainProgramDiv">
+        					 <div class="fileShow"> 
+        					     <p id='mainProgShow' style="display:none"></p>
+        					 </div>
+          				  <input type="button" id="mainProgButton" value='请选择主程序'
+            				   class="button button-primary button-brick" onclick="showOpenDialog('File')"
+				               ></input>
+          			 	  	<div ng-show="main.selection.hasDrive()">
+   			                 <div class="step-selection-text button" style="display:none" id="mainProgChange" onclick="showOpenDialog('File')">
+			                       重新选择
+			                   </div>
+			                </div>
+			                
+			                			  
+			          </div>
+			      </div>
+			    </div>
+			  </div>
+
+			  <div class="col-xs" ng-controller="DriveSelectionController as drive">
+			    <div class="box text-center relative">
+			      <div class="step-border-left" ng-disabled="main.shouldDriveStepBeDisabled()"></div>
+			      <div class="step-border-right" ng-disabled="main.shouldFlashStepBeDisabled()"></div>
+
+			      <div class="center-block">
+			        <img class="svg-icon" src="assets/firmware.svg"></img>
+
+			      </div>
+
+			      <div class="space-vertical-large">
+			        <div ng-hide="main.selection.hasDrive()">
+
+			          <div>
+			          	<div class="fileShow"> 
+			          	   <p id='firmwareShow' style="display:none"></p>
+			          	</div>
+			            <input type="button" id="firmwareButton" value='请选择固件目录'
+            				class="button button-primary button-brick" onclick="showOpenDialog('Directory')" 
+				            ></input>
+			          </div>
+
+			        </div>
+			        <div ng-show="main.selection.hasDrive()">
+			          <div class="step-selection-text button" style="display:none" id="firmwareChange" onclick="showOpenDialog('Directory')">
+			            重新选择
+			          </div>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+
+			  <div class="col-xs" ng-controller="FlashController as flash">
+			    <div class="box text-center">
+			      <div class="center-block">
+			        <img class="svg-icon" src="assets/flash.svg"></img>
+			      </div>
+
+			      <div class="space-vertical-large">
+			         <div>
+			            <button class="button button-primary button-brick" onclick="showOpenDialog('Flash')">开始烧写</button>
+			          </div>
+			      </div>
+			    </div>
+			  </div>
+			   <div class="footer">
+			   	<input id=adbdebug type="checkbox" class="space-vertical-large" style="vertical-align:middle;"><label>打开adb网络调试</label></>  
+			   		<p></>
+			   	<input type="checkbox" class="space-vertical-large" onclick="showIpInput(this)"><label id="iplabel" style="vertical-align:middle;">通过网络连接设备</label></>
+          <input id=ip1 class=ip_input maxlength=3 onkeydown="keyDownEvent(this)" onkeyup="keyUpEvent(this)"><input
+             id=ip2 class=ip_input maxlength=3 onkeydown="keyDownEvent(this)" onkeyup="keyUpEvent(this)"><input
+             id=ip3 class=ip_input maxlength=3 onkeydown="keyDownEvent(this)" onkeyup="keyUpEvent(this)"><input
+             id=ip4 class=ip_input maxlength=3 onkeydown="keyDownEvent(this)" onkeyup="keyUpEventForIp4(this)">    
+        </div>   
+		</div>
+    </main>
+
+    <footer class="section-footer" ng-controller="StateController as state"
+      ng-hide="state.currentName === 'success'">
+     
+     </footer>
+</body>
+</html>
